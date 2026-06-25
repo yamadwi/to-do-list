@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="profile">
+                <img src="https://i.pravatar.cc/100" alt="Profile">
+                <div>
+                    <h2>Yam Dwi Yulianto</h2>
+                    <p>Frontend Developer</p>
+                </div>
+            </div>
+
+            <div class="date-time">
+                <h3 id="day"></h3>
+                <p id="date"></p>
+            </div>
+
+        </header>
+
+        <!-- INPUT SECTION -->
+        <section class="task-form">
+
+            <textarea id="taskInput" placeholder="What needs to be done?"></textarea>
+
+            <div class="form-action">
+
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <button id="addTaskBtn">
+                    Add Task
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- TASK BOARD -->
+        <section class="task-board">
+
+            <!-- TODO -->
+            <div class="task-column">
+
+                <h2>To Do</h2>
+
+                <div id="todoList"></div>
+
+            </div>
+
+            <!-- DONE -->
+            <div class="task-column">
+
+                <h2>Done</h2>
+
+                <div id="doneList"></div>
+
+            </div>
+
+        </section>
+
+        <!-- DELETE ALL -->
+        <div class="delete-all-wrapper">
+
+            <button id="deleteAllBtn">
+                Delete All
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
