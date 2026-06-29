@@ -248,6 +248,18 @@ function renderTask() {
 
         info.appendChild(title);
 
+        if (task.dueDate) {
+
+            const dueDate = document.createElement("div");
+        
+            dueDate.classList.add("task-date");
+        
+            dueDate.textContent = formatTaskDate(task.dueDate);
+        
+            info.appendChild(dueDate);
+        
+        }
+
         left.appendChild(checkbox);
 
         left.appendChild(info);
@@ -357,6 +369,18 @@ function renderTask() {
         title.textContent = task.title;
     
         info.appendChild(title);
+
+        if (task.dueDate) {
+
+            const dueDate = document.createElement("div");
+        
+            dueDate.classList.add("task-date");
+        
+            dueDate.textContent = formatTaskDate(task.dueDate);
+        
+            info.appendChild(dueDate);
+        
+        }
     
         left.appendChild(checkbox);
         left.appendChild(info);
@@ -597,6 +621,24 @@ function renderPrioritySelect() {
         prioritySelect.appendChild(option);
 
     });
+
+}
+
+function formatTaskDate(dateString) {
+
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+
+            month: "short",
+
+            day: "numeric"
+
+        }
+
+    );
 
 }
 
