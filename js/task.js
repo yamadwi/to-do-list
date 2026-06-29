@@ -255,6 +255,12 @@ function renderTask() {
             dueDate.classList.add("task-date");
         
             dueDate.textContent = formatTaskDate(task.dueDate);
+
+            if (isOverdue(task)) {
+
+                dueDate.style.color = "#EF4444";
+        
+            }
         
             info.appendChild(dueDate);
         
@@ -377,6 +383,12 @@ function renderTask() {
             dueDate.classList.add("task-date");
         
             dueDate.textContent = formatTaskDate(task.dueDate);
+
+            if (isOverdue(task)) {
+
+                dueDate.style.color = "#EF4444";
+        
+            }
         
             info.appendChild(dueDate);
         
@@ -621,6 +633,24 @@ function renderPrioritySelect() {
         prioritySelect.appendChild(option);
 
     });
+
+}
+
+function isOverdue(task) {
+
+    if (!task.dueDate) return false;
+
+    if (task.completed) return false;
+
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    const due = new Date(task.dueDate);
+
+    due.setHours(0, 0, 0, 0);
+
+    return due < today;
 
 }
 
