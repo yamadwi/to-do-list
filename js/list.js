@@ -90,6 +90,8 @@ function saveList() {
 
     });
 
+    saveStorage();
+
     renderLists();
 
     closeListModal();
@@ -171,6 +173,8 @@ function selectList(id) {
 
     appData.currentList = id;
 
+    saveStorage();
+
     renderLists();
 
 }
@@ -187,25 +191,13 @@ function editList() {
 
     listMenu.classList.remove("show");
 
+    openEditModal();
+
 }
 
-function deleteList() {
+function openEditModal(){
 
-    const isDelete = confirm("Delete this list?");
-
-    if (!isDelete) return;
-
-    appData.lists = appData.lists.filter(item => item.id !== selectedListId);
-
-    if (appData.currentList === selectedListId) {
-
-        appData.currentList = null;
-
-    }
-
-    renderLists();
-
-    listMenu.classList.remove("show");
+    editListModal.classList.add("show");
 
 }
 
@@ -230,6 +222,8 @@ function updateList() {
     if (!name) return;
 
     list.name = name;
+
+    saveStorage();
 
     renderLists();
 
@@ -268,6 +262,8 @@ function confirmDeleteListAction() {
         appData.currentList = null;
 
     }
+
+    saveStorage();
 
     renderLists();
 

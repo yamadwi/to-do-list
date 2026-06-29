@@ -5,12 +5,16 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
 function initApp() {
-
+    
+    loadStorage();
+    
     showToday();
     
     initList();
 
     initPriority();
+
+    renderLists();
 }
 
 // =========================
