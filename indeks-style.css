@@ -1117,3 +1117,114 @@ SIDEBAR
     height: 30px;
 
 } */
+
+
+/* =========================
+   CALENDAR
+========================= */
+
+.calendar-popup {
+
+    position: absolute;
+
+    display: none;
+
+    width: 300px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow);
+
+    padding: 16px;
+
+    z-index: 3000;
+
+}
+
+.calendar-popup.show {
+
+    display: block;
+
+}
+
+.calendar-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 16px;
+
+}
+
+.calendar-header button {
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+}
+
+.calendar-header button:hover {
+
+    background: var(--hover);
+
+}
+
+.calendar-week {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    margin-bottom: 8px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+.calendar-days {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 4px;
+
+}
+
+.calendar-day {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+}
+
+.calendar-day:hover {
+
+    background: var(--hover);
+
+}

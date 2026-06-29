@@ -14,6 +14,8 @@ function initApp() {
 
     initPriority();
 
+    initCalendar();
+
     initTask();
 
     renderLists();

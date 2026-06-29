@@ -6,8 +6,6 @@ const taskInput = document.getElementById("taskInput");
 
 const prioritySelect = document.getElementById("prioritySelect");
 
-const calendarBtn = document.getElementById("calendarBtn");
-
 const addTaskBtn = document.getElementById("addTaskBtn");
 
 const todoContainer = document.getElementById("todoContainer");
@@ -148,7 +146,7 @@ function saveTask() {
 
         priorityId: priorityId,
 
-        dueDate: null,
+        dueDate: selectedDate,
 
         completed: false
 
@@ -169,6 +167,19 @@ function getPriority(priorityId) {
     return appData.priorities.find(
         priority => priority.id === priorityId
     );
+
+}
+
+function openTaskMenu(event, taskId) {
+
+    event.stopPropagation();
+
+    selectedTaskId = taskId;
+
+    taskMenu.classList.add("show");
+
+    taskMenu.style.left = event.pageX + "px";
+    taskMenu.style.top = event.pageY + "px";
 
 }
 
@@ -291,15 +302,7 @@ function renderTask() {
 
         menu.addEventListener("click", (event) => {
 
-            event.stopPropagation();
-        
-            selectedTaskId = task.id;
-        
-            taskMenu.classList.add("show");
-        
-            taskMenu.style.left = event.pageX + "px";
-        
-            taskMenu.style.top = event.pageY + "px";
+            openTaskMenu(event, task.id);
         
         });
 
@@ -402,14 +405,7 @@ function renderTask() {
 
         menu.addEventListener("click", (event) => {
 
-            event.stopPropagation();
-        
-            selectedTaskId = task.id;
-        
-            taskMenu.classList.add("show");
-        
-            taskMenu.style.left = event.pageX + "px";
-            taskMenu.style.top = event.pageY + "px";
+            openTaskMenu(event, task.id);
         
         });
     
