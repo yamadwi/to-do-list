@@ -1,7 +1,6 @@
 // =========================
 // ELEMENT
 // =========================
-// ambil element HTML
 
 const addListBtn = document.getElementById("addListBtn");
 const listModal = document.getElementById("listModal");
@@ -16,10 +15,11 @@ const listMenu = document.getElementById("listMenu");
 
 let selectedListId = null;
 
+const editListBtn = document.getElementById("editListBtn");
+
 // =========================
 // INIT
 // =========================
-// function init
 
 function initList() {
 
@@ -29,12 +29,13 @@ function initList() {
 
     saveListBtn.addEventListener("click", saveList);
 
+    editListBtn.addEventListener("click", editList);
+
 }
 
 // =========================
 // FUNCTION
 // =========================
-// semua function
 
 function openListModal() {
 
@@ -115,12 +116,10 @@ function renderLists() {
 
         menuBtn.appendChild(menuIcon);
 
-        // Masukin semuanya
         listItem.appendChild(listNameBtn);
         listItem.appendChild(menuBtn);
 
         listContainer.appendChild(listItem);
-        menuBtn.appendChild(menuIcon);
 
         menuBtn.addEventListener("click", (event) => {
 
@@ -158,6 +157,24 @@ function selectList(id) {
     appData.currentList = id;
 
     renderLists();
+
+}
+
+function editList() {
+
+    const list = appData.lists.find(item => item.id === selectedListId);
+
+    if (!list) return;
+
+    const newName = prompt("Edit list name", list.name);
+
+    if (!newName) return;
+
+    list.name = newName.trim();
+
+    renderLists();
+
+    listMenu.classList.remove("show");
 
 }
 
