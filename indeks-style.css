@@ -806,6 +806,12 @@ SIDEBAR
 
 }
 
+.modal-content input:focus {
+
+    border-color: var(--primary);
+
+}
+
 .modal-action {
 
     display: flex;
@@ -818,37 +824,96 @@ SIDEBAR
 
 .modal-action button {
 
-    padding: 10px 18px;
+    min-width: 82px;
+
+    height: 38px;
 
     border-radius: var(--radius-small);
 
-}
+    font-size: 14px;
 
-#cancelList {
-
-    background: var(--hover);
+    font-weight: 500;
 
 }
 
-#saveList {
+.btn-primary {
 
     background: var(--primary);
 
     color: white;
 
+    transition: var(--transition);
+
 }
 
-#cancelPriority {
+.btn-danger {
+
+    background: var(--danger);
+
+    color: white;
+
+}
+
+.btn-danger:hover {
+
+    background: #DC2626;
+
+}
+
+.btn-danger:active {
+
+    transform: scale(.97);
+
+}
+
+.btn-primary:hover {
+
+    opacity: .9;
+
+    background: #1D4ED8;
+
+}
+
+.btn-secondary {
 
     background: var(--hover);
 
+    transition: var(--transition);
+
 }
 
-#savePriority {
+.btn-secondary:hover {
 
-    background: var(--primary);
+    background: #DDE1E7;
 
-    color: white;
+    background: #E2E8F0;
+
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+
+    transform: scale(.97);
+
+}
+
+.modal-message {
+
+    font-size: 15px;
+
+    color: var(--text);
+
+    line-height: 1.5;
+
+}
+
+.modal-warning {
+
+    margin-top: -10px;
+
+    font-size: 13px;
+
+    color: var(--text-secondary);
 
 }
 

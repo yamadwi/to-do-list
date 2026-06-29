@@ -18,6 +18,20 @@ let selectedListId = null;
 const editListBtn = document.getElementById("editListBtn");
 const deleteListBtn = document.getElementById("deleteListBtn");
 
+const editListModal = document.getElementById("editListModal");
+
+const editListName = document.getElementById("editListName");
+
+const cancelEditList = document.getElementById("cancelEditList");
+
+const updateListBtn = document.getElementById("updateListBtn");
+
+const deleteListModal = document.getElementById("deleteListModal");
+
+const cancelDeleteList = document.getElementById("cancelDeleteList");
+
+const confirmDeleteList = document.getElementById("confirmDeleteList");
+
 // =========================
 // INIT
 // =========================
@@ -33,6 +47,14 @@ function initList() {
     editListBtn.addEventListener("click", editList);
 
     deleteListBtn.addEventListener("click", deleteList);
+
+    cancelEditList.addEventListener("click", closeEditModal);
+
+    updateListBtn.addEventListener("click", updateList);
+
+    cancelDeleteList.addEventListener("click", closeDeleteModal);
+
+    confirmDeleteList.addEventListener("click", confirmDeleteListAction);
 
 }
 
@@ -159,13 +181,9 @@ function editList() {
 
     if (!list) return;
 
-    const newName = prompt("Edit list name", list.name);
+    editListName.value = list.name;
 
-    if (!newName) return;
-
-    list.name = newName.trim();
-
-    renderLists();
+    editListModal.classList.add("show");
 
     listMenu.classList.remove("show");
 
@@ -188,6 +206,72 @@ function deleteList() {
     renderLists();
 
     listMenu.classList.remove("show");
+
+}
+
+function closeEditModal() {
+
+    editListModal.classList.remove("show");
+
+    editListName.value = "";
+
+}
+
+function updateList() {
+
+    const list = appData.lists.find(
+        item => item.id === selectedListId
+    );
+
+    if (!list) return;
+
+    const name = editListName.value.trim();
+
+    if (!name) return;
+
+    list.name = name;
+
+    renderLists();
+
+    closeEditModal();
+
+}
+
+function openDeleteModal() {
+
+    listMenu.classList.remove("show");
+
+    deleteListModal.classList.add("show");
+
+}
+
+function closeDeleteModal() {
+
+    deleteListModal.classList.remove("show");
+
+}
+
+function deleteList() {
+
+    openDeleteModal();
+
+}
+
+function confirmDeleteListAction() {
+
+    appData.lists = appData.lists.filter(
+        item => item.id !== selectedListId
+    );
+
+    if (appData.currentList === selectedListId) {
+
+        appData.currentList = null;
+
+    }
+
+    renderLists();
+
+    closeDeleteModal();
 
 }
 
