@@ -40,6 +40,12 @@ const cancelDeleteTask = document.getElementById("cancelDeleteTask");
 
 const confirmDeleteTaskBtn = document.getElementById("confirmDeleteTask");
 
+const deleteAllModal = document.getElementById("deleteAllModal");
+
+const cancelDeleteAll = document.getElementById("cancelDeleteAll");
+
+const confirmDeleteAllBtn = document.getElementById("confirmDeleteAll");
+
 let selectedTaskId = null;
 
 
@@ -78,12 +84,27 @@ function initTask() {
     
     confirmDeleteTaskBtn.addEventListener(
         "click",
-        confirmDeleteTaskBtn
+        confirmDeleteTask
     );
     
     deleteTaskBtn.addEventListener(
         "click",
         deleteTask
+    );
+
+    deleteAllBtn.addEventListener(
+        "click",
+        openDeleteAllModal
+    );
+    
+    cancelDeleteAll.addEventListener(
+        "click",
+        closeDeleteAllModal
+    );
+    
+    confirmDeleteAllBtn.addEventListener(
+        "click",
+        deleteAllTasks
     );
 
 }
@@ -414,6 +435,34 @@ function deleteTask() {
 function closeDeleteTaskModal() {
 
     deleteTaskModal.classList.remove("show");
+
+}
+
+function openDeleteAllModal() {
+
+    deleteAllModal.classList.add("show");
+
+}
+
+function closeDeleteAllModal() {
+
+    deleteAllModal.classList.remove("show");
+
+}
+
+function deleteAllTasks() {
+
+    appData.tasks = appData.tasks.filter(task =>
+
+        task.listId !== appData.currentList
+
+    );
+
+    saveStorage();
+
+    renderTask();
+
+    closeDeleteAllModal();
 
 }
 
