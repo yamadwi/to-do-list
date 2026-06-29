@@ -16,6 +16,7 @@ const listMenu = document.getElementById("listMenu");
 let selectedListId = null;
 
 const editListBtn = document.getElementById("editListBtn");
+const deleteListBtn = document.getElementById("deleteListBtn");
 
 // =========================
 // INIT
@@ -30,6 +31,8 @@ function initList() {
     saveListBtn.addEventListener("click", saveList);
 
     editListBtn.addEventListener("click", editList);
+
+    deleteListBtn.addEventListener("click", deleteList);
 
 }
 
@@ -64,16 +67,6 @@ function saveList() {
         name: name
 
     });
-
-    // const newList = {
-
-    //     id: Date.now(),
-
-    //     name
-
-    // };
-
-    // appData.lists.push(newList);
 
     renderLists();
 
@@ -178,6 +171,25 @@ function editList() {
 
 }
 
+function deleteList() {
+
+    const isDelete = confirm("Delete this list?");
+
+    if (!isDelete) return;
+
+    appData.lists = appData.lists.filter(item => item.id !== selectedListId);
+
+    if (appData.currentList === selectedListId) {
+
+        appData.currentList = null;
+
+    }
+
+    renderLists();
+
+    listMenu.classList.remove("show");
+
+}
 
 // =========================
 // EVENT
