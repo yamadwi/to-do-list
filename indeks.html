@@ -4,91 +4,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow</title>
 
-    <link rel="stylesheet" href="style.css">
+    <title>To-Do-List</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="indeks-style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="app-container">
 
-        <!-- HEADER -->
-        <header class="header">
+        <!-- ========================= -->
+        <!-- Sidebar -->
+        <!-- ========================= -->
+
+        <aside class="sidebar">
+
+            <!-- Profile -->
 
             <div class="profile">
-                <img src="https://i.pravatar.cc/100" alt="Profile">
-                <div>
-                    <h2>Yam Dwi Yulianto</h2>
+
+                <img src="assets/foto-profile.svg" alt="Profile">
+
+                <div class="profile-info">
+
+                    <h2>Az Zahra Dinda Kamalia</h2>
+
                     <p>Frontend Developer</p>
+
                 </div>
+
             </div>
 
-            <div class="date-time">
-                <h3 id="day"></h3>
-                <p id="date"></p>
+            <!-- Date -->
+
+            <div class="today">
+
+                <img 
+                src="assets/button-calender.svg" 
+                alt="icon-calendar">
+
+                <div>
+
+                    <h3 id="todayName"></h3>
+
+                    <span id="todayDate"></span>
+
+                </div>
+
             </div>
 
-        </header>
+            <!-- ========================= -->
+            <!-- LIST -->
+            <!-- ========================= -->
 
-        <!-- INPUT SECTION -->
-        <section class="task-form">
+            <section class="sidebar-section">
 
-            <textarea id="taskInput" placeholder="What needs to be done?"></textarea>
+                <div class="section-header">
 
-            <div class="form-action">
+                    <button type="button" class="accordion-btn">
 
-                <select id="priority">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
+                        <img
+                        class="button-icon"
+                        src="assets/icon-chevron.svg" 
+                        alt="chevron">
 
-                <button id="addTaskBtn">
-                    Add Task
+                        List
+
+                    </button>
+
+                    <button 
+                    type="button"
+                    id="addListBtn">
+
+                        <img class="button-icon"
+                        src="assets/icon-plus.svg" 
+                        alt="add">
+
+                    </button>
+
+                </div>
+
+                <div id="listContainer" class="section-content">
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- PRIORITY -->
+            <!-- ========================= -->
+
+            <section class="sidebar-section">
+
+                <div class="section-header">
+
+                    <button type="button" class="accordion-btn">
+
+                        <img
+                        class="button-icon" 
+                        src="assets/icon-chevron.svg" 
+                        alt="chevron">
+
+                        Priority
+
+                    </button>
+
+                    <button 
+                    type="button"
+                    id="addPriorityBtn">
+
+                        <img 
+                        class="button-icon"
+                        src="assets/icon-plus.svg" 
+                        alt="add">
+
+                    </button>
+
+                </div>
+
+                <div id="priorityContainer" class="section-content">
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- OVERDUE -->
+            <!-- ========================= -->
+
+            <section class="sidebar-section">
+
+                <div class="section-header">
+
+                    <button type="button" class="accordion-btn">
+
+                        <img
+                        class="button-icon" 
+                        src="assets/icon-chevron.svg" 
+                        alt="chevron">
+
+                        Overdue
+
+                    </button>
+
+                </div>
+
+                <div id="overdueContainer" class="section-content">
+
+                </div>
+
+            </section>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- Content -->
+        <!-- ========================= -->
+
+        <main class="main-content">
+
+            <!-- Add Task -->
+
+            <section class="task-form">
+
+                <textarea id="taskInput" placeholder="What needs to be done?"></textarea>
+
+                <div class="task-action">
+
+                    <select id="prioritySelect">
+
+                    </select>
+
+                    <div class="action-button">
+
+                        <button 
+                        type="button"
+                        id="calendarBtn">
+
+                            <img 
+                            class="button-icon"
+                            src="assets/button-calender.svg" 
+                            alt="Calendar">
+
+                        </button>
+
+                        <button 
+                        type="button"
+                        id="addTaskBtn">
+
+                            Add Task
+
+                            <img 
+                            class="button-icon"
+                            src="assets/white-plus.svg" 
+                            alt="add">
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- Task Workspace -->
+            <!-- ========================= -->
+            
+            <section class="task-workspace">
+            
+                <!-- Nama List Aktif -->
+            
+                <div class="task-header">
+            
+                    <h2 id="currentListName">
+                        Choose a List
+                    </h2>
+            
+                </div>
+            
+                <!-- To Do -->
+            
+                <div id="todoContainer" class="task-group">
+            
+                </div>
+            
+                <!-- Completed Accordion -->
+            
+                <div class="task-accordion">
+            
+                    <button 
+                    type="button"
+                    id="completedAccordion" 
+                    class="accordion-btn">
+            
+                        <img class="chevron-icon" 
+                        src="assets/icon-chevron.svg" 
+                        alt="chevron">
+            
+                        Completed
+            
+                    </button>
+            
+                    <div id="completedContainer" class="accordion-content">
+            
+                    </div>
+            
+                </div>
+            
+                <!-- Delete All -->
+            
+                <button type="button" id="deleteAllBtn">
+            
+                    Delete All
+            
+                </button>
+            
+            </section>
+
+        </main>
+
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Modal Add List -->
+    <!-- ========================= -->
+
+    <div id="listModal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>
+
+                Add List
+
+            </h2>
+
+            <input id="listName" type="text" placeholder="List name">
+
+            <div class="modal-action">
+
+                <button
+                type="button"
+                id="cancelList">
+
+                    Cancel
+
+                </button>
+
+                <button 
+                type="button"
+                id="saveList">
+
+                    Save
+
                 </button>
 
             </div>
-
-        </section>
-
-        <!-- TASK BOARD -->
-        <section class="task-board">
-
-            <!-- TODO -->
-            <div class="task-column">
-
-                <h2>To Do</h2>
-
-                <div id="todoList"></div>
-
-            </div>
-
-            <!-- DONE -->
-            <div class="task-column">
-
-                <h2>Done</h2>
-
-                <div id="doneList"></div>
-
-            </div>
-
-        </section>
-
-        <!-- DELETE ALL -->
-        <div class="delete-all-wrapper">
-
-            <button id="deleteAllBtn">
-                Delete All
-            </button>
 
         </div>
 
     </div>
 
-    <script src="script.js"></script>
+    <!-- ========================= -->
+    <!-- Modal Add Priority -->
+    <!-- ========================= -->
+
+    <div id="priorityModal" class="modal">
+    
+        <div class="modal-content">
+    
+            <h2>Add Priority</h2>
+    
+            <input type="text" id="priorityName" placeholder="Priority Name">
+    
+            <div class="flag-picker">
+    
+                <button type="button" class="flag-btn" data-color="#EF4444">
+    
+                    <img 
+                    src="assets/red-flag.svg" 
+                    alt="red-flag">
+    
+                </button>
+    
+                <button type="button" class="flag-btn" data-color="#F59B0B">
+    
+                    <img 
+                    src="assets/yellow-flag.svg" 
+                    alt="yellow-flag">
+    
+                </button>
+    
+                <button type="button" class="flag-btn" data-color="#2563EB">
+    
+                    <img 
+                    src="assets/blue-flag.svg" 
+                    alt="blue-flag">
+    
+                </button>
+    
+            </div>
+    
+            <div class="modal-action">
+            
+                <button type="button" id="cancelPriority">
+            
+                    Cancel
+            
+                </button>
+            
+                <button type="button" id="savePriority">
+            
+                    Add
+            
+                </button>      
+            </div>
+    
+        </div>
+    
+    </div>
+    
+    <!-- ========================= -->
+    <!-- Popup Menu List -->
+    <!-- ========================= -->
+    
+    <div id="listMenu" class="popup-menu">
+    
+        <button type="button" id="editListBtn">
+    
+            Edit
+    
+        </button>
+    
+        <button type="button" id="deleteListBtn">
+    
+            Delete
+    
+        </button>
+    
+    </div>
+    
+    <!-- Calendar -->
+    
+    <div id="calendarPopup">
+    
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/list.js"></script>
+    <script src="js/priority.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/task.js"></script>
+    <script src="js/storage.js"></script>
 
 </body>
 
