@@ -24,6 +24,22 @@ const editTaskBtn = document.getElementById("editTaskBtn");
 
 const deleteTaskBtn = document.getElementById("deleteTaskBtn");
 
+const editTaskModal = document.getElementById("editTaskModal");
+
+const editTaskInput = document.getElementById("editTaskInput");
+
+const editPrioritySelect = document.getElementById("editPrioritySelect");
+
+const cancelEditTask = document.getElementById("cancelEditTask");
+
+const updateTaskBtn = document.getElementById("updateTaskBtn");
+
+const deleteTaskModal = document.getElementById("deleteTaskModal");
+
+const cancelDeleteTask = document.getElementById("cancelDeleteTask");
+
+const confirmDeleteTaskBtn = document.getElementById("confirmDeleteTask");
+
 let selectedTaskId = null;
 
 
@@ -42,7 +58,27 @@ function initTask() {
 
     editTaskBtn.addEventListener(
         "click",
+        openEditTaskModal
+    );
+    
+    cancelEditTask.addEventListener(
+        "click",
+        closeEditTaskModal
+    );
+    
+    updateTaskBtn.addEventListener(
+        "click",
         updateTask
+    );
+
+    cancelDeleteTask.addEventListener(
+        "click",
+        closeDeleteTaskModal
+    );
+    
+    confirmDeleteTaskBtn.addEventListener(
+        "click",
+        confirmDeleteTaskBtn
     );
     
     deleteTaskBtn.addEventListener(
@@ -369,9 +405,101 @@ function renderTask() {
 
 function deleteTask() {
 
+    taskMenu.classList.remove("show");
+
+    deleteTaskModal.classList.add("show");
+
+}
+
+function closeDeleteTaskModal() {
+
+    deleteTaskModal.classList.remove("show");
+
+}
+
+function confirmDeleteTask() {
+
+    appData.tasks = appData.tasks.filter(
+        task => task.id !== selectedTaskId
+    );
+
+    saveStorage();
+
+    renderTask();
+
+    closeDeleteTaskModal();
+
+}
+
+function openEditTaskModal() {
+
+    const task = appData.tasks.find(
+        item => item.id === selectedTaskId
+    );
+
+    if (!task) return;
+
+    editTaskInput.value = task.title;
+
+    renderEditPrioritySelect();
+
+    editPrioritySelect.value = task.priorityId;
+
+    editTaskModal.classList.add("show");
+
+    taskMenu.classList.remove("show");
+
+}
+
+function closeEditTaskModal() {
+
+    editTaskModal.classList.remove("show");
+
+    editTaskInput.value = "";
+
+    editPrioritySelect.value = "";
+
+}
+
+function renderEditPrioritySelect() {
+
+    editPrioritySelect.innerHTML = "";
+
+    appData.priorities.forEach(priority => {
+
+        const option = document.createElement("option");
+
+        option.value = priority.id;
+
+        option.textContent = priority.name;
+
+        editPrioritySelect.appendChild(option);
+
+    });
+
 }
 
 function updateTask() {
+
+    const task = appData.tasks.find(
+        item => item.id === selectedTaskId
+    );
+
+    if (!task) return;
+
+    const title = editTaskInput.value.trim();
+
+    if (!title) return;
+
+    task.title = title;
+
+    task.priorityId = Number(editPrioritySelect.value);
+
+    saveStorage();
+
+    renderTask();
+
+    closeEditTaskModal();
 
 }
 
