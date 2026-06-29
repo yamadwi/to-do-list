@@ -15,6 +15,9 @@ function initApp() {
     initPriority();
 
     renderLists();
+
+    renderPriority();
+    
 }
 
 // =========================
