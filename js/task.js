@@ -247,7 +247,7 @@ function renderTask() {
         });
 
         right.appendChild(flag);
-
+        
         right.appendChild(menu);
 
         // =========================
@@ -342,6 +342,19 @@ function renderTask() {
         menuIcon.src = "assets/three-dot.svg";
     
         menu.appendChild(menuIcon);
+
+        menu.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+        
+            selectedTaskId = task.id;
+        
+            taskMenu.classList.add("show");
+        
+            taskMenu.style.left = event.pageX + "px";
+            taskMenu.style.top = event.pageY + "px";
+        
+        });
     
         right.appendChild(menu);
     
