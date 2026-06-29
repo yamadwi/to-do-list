@@ -120,6 +120,8 @@ function savePriority(){
 
     renderPriority();
 
+    renderPrioritySelect();
+    
     closePriorityModal();
 
 }
@@ -192,6 +194,8 @@ function updatePriority() {
 
     renderPriority();
 
+    renderPrioritySelect();;
+
     closeEditPriorityModal();
 
 }
@@ -231,6 +235,8 @@ function confirmDeletePriorityAction() {
     saveStorage();
 
     renderPriority();
+
+    renderPrioritySelect();
 
     closeDeletePriorityModal();
 

@@ -177,6 +177,8 @@ function selectList(id) {
 
     renderLists();
 
+    renderTask();
+
 }
 
 function editList() {

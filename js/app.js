@@ -14,10 +14,16 @@ function initApp() {
 
     initPriority();
 
+    initTask();
+
     renderLists();
 
     renderPriority();
-    
+
+    renderPrioritySelect();
+
+    renderTask();
+
 }
 
 // =========================
