@@ -654,6 +654,20 @@ SIDEBAR
 
 }
 
+#completedContainer .task-title {
+
+    text-decoration: line-through;
+
+    opacity: .6;
+
+}
+
+#completedContainer .task-check {
+
+    accent-color: var(--success);
+
+}
+
 .task-date{
 
     display: flex;
@@ -719,6 +733,32 @@ SIDEBAR
     border-top: 1px solid var(--border);
 
     padding-top: 18px;
+
+}
+
+.accordion-content {
+
+    display: none;
+
+}
+
+.accordion-content.show {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.chevron-icon {
+
+    transition: .25s;
+
+}
+
+.chevron-icon.rotate {
+
+    transform: rotate(90deg);
 
 }
 
