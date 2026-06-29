@@ -231,6 +231,12 @@ function updateList() {
 
 }
 
+function deleteList() {
+
+    openDeleteModal();
+
+}
+
 function openDeleteModal() {
 
     listMenu.classList.remove("show");
@@ -242,12 +248,6 @@ function openDeleteModal() {
 function closeDeleteModal() {
 
     deleteListModal.classList.remove("show");
-
-}
-
-function deleteList() {
-
-    openDeleteModal();
 
 }
 
