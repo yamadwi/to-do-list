@@ -108,7 +108,10 @@ function renderLists() {
         const listItem = document.createElement("div");
         listItem.classList.add("list-item");
 
-        if (list.id === appData.currentList) {
+        if (
+            appData.currentView === "list" &&
+            list.id === appData.currentList
+        ) {
             listItem.classList.add("active");
         }
 
@@ -173,9 +176,13 @@ function selectList(id) {
 
     appData.currentList = id;
 
+    appData.currentView = "list";
+
     saveStorage();
 
     renderLists();
+
+    renderPriority();
 
     renderTask();
 

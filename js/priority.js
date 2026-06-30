@@ -130,9 +130,21 @@ function selectPriority(id){
 
     appData.currentPriority = id;
 
+    appData.currentView = "priority";
+
     saveStorage();
 
+    renderLists();
+
     renderPriority();
+
+    const priority = appData.priorities.find(
+        item => item.id === id
+    );
+    
+    currentListName.textContent = priority.name;
+
+    renderTask();
 
 }
 
@@ -280,10 +292,13 @@ function renderPriority() {
 
         priorityItem.classList.add("list-item");
 
-        if (priority.id === appData.currentPriority) {
-
+        if (
+            appData.currentView === "priority" &&
+            priority.id === appData.currentPriority
+        ) {
+        
             priorityItem.classList.add("active");
-
+        
         }
 
         const flag = document.createElement("img");

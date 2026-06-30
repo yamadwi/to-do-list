@@ -26,6 +26,8 @@ const editTaskModal = document.getElementById("editTaskModal");
 
 const editTaskInput = document.getElementById("editTaskInput");
 
+const editDueDate = document.getElementById("editDueDate");
+
 const editPrioritySelect = document.getElementById("editPrioritySelect");
 
 const cancelEditTask = document.getElementById("cancelEditTask");
@@ -45,6 +47,8 @@ const cancelDeleteAll = document.getElementById("cancelDeleteAll");
 const confirmDeleteAllBtn = document.getElementById("confirmDeleteAll");
 
 const overdueContainer = document.getElementById("overdueContainer");
+
+const overdueBtn = document.getElementById("overdueBtn");
 
 let selectedTaskId = null;
 
@@ -95,6 +99,11 @@ function initTask() {
     deleteAllBtn.addEventListener(
         "click",
         openDeleteAllModal
+    );
+
+    overdueBtn.addEventListener(
+        "click",
+        openOverdueView
     );
     
     cancelDeleteAll.addEventListener(
@@ -193,12 +202,46 @@ function renderTask() {
 
     completedContainer.innerHTML = "";
 
-    const tasks = appData.tasks.filter(task =>
+    if (appData.currentView === "overdue") {
 
-        task.listId === appData.currentList &&
-        !task.completed
+        currentListName.textContent = "Overdue";
+    
+    }
 
-    );
+    let tasks = [];
+
+    if (appData.currentView === "list") {
+
+        tasks = appData.tasks.filter(task =>
+
+            task.listId === appData.currentList &&
+            !task.completed
+
+        );
+
+    }
+
+    else if (appData.currentView === "priority") {
+
+        tasks = appData.tasks.filter(task =>
+
+            task.priorityId === appData.currentPriority &&
+            !task.completed
+
+        );
+
+    }
+
+    else if (appData.currentView === "overdue") {
+
+        tasks = appData.tasks.filter(task =>
+    
+            isOverdue(task) &&
+            !task.completed
+    
+        );
+    
+    }
 
     tasks.forEach(task => {
 
@@ -342,12 +385,40 @@ function renderTask() {
 
     });
 
-    const completedTasks = appData.tasks.filter(task =>
+    let completedTasks = [];
 
-        task.listId === appData.currentList &&
-        task.completed
+    if (appData.currentView === "list") {
+
+        completedTasks = appData.tasks.filter(task =>
+
+            task.listId === appData.currentList &&
+            task.completed
+
+        );
+
+    }
+
+    else if (appData.currentView === "priority") {
+
+        completedTasks = appData.tasks.filter(task =>
+
+            task.priorityId === appData.currentPriority &&
+            task.completed
+
+        );
+
+    }
+
+    else if (appData.currentView === "overdue") {
+
+        completedTasks = appData.tasks.filter(task =>
     
-    );
+            isOverdue(task) &&
+            task.completed
+    
+        );
+    
+    }
     
     completedTasks.forEach(task => {
     
@@ -488,11 +559,35 @@ function closeDeleteAllModal() {
 
 function deleteAllTasks() {
 
-    appData.tasks = appData.tasks.filter(task =>
+    if (appData.currentView === "list") {
 
-        task.listId !== appData.currentList
+        appData.tasks = appData.tasks.filter(task =>
 
-    );
+            task.listId !== appData.currentList
+
+        );
+
+    }
+
+    else if (appData.currentView === "priority") {
+
+        appData.tasks = appData.tasks.filter(task =>
+
+            task.priorityId !== appData.currentPriority
+
+        );
+
+    }
+
+    else if (appData.currentView === "overdue") {
+
+        appData.tasks = appData.tasks.filter(task =>
+
+            !isOverdue(task)
+
+        );
+
+    }
 
     saveStorage();
 
@@ -534,6 +629,10 @@ function openEditTaskModal() {
 
     editPrioritySelect.value = task.priorityId;
 
+    editDueDate.value = task.dueDate
+        ? task.dueDate.split("T")[0]
+        : "";
+
     editTaskModal.classList.add("show");
 
     taskMenu.classList.remove("show");
@@ -547,6 +646,8 @@ function closeEditTaskModal() {
     editTaskInput.value = "";
 
     editPrioritySelect.value = "";
+
+    editDueDate.value = "";
 
 }
 
@@ -583,6 +684,10 @@ function updateTask() {
     task.title = title;
 
     task.priorityId = Number(editPrioritySelect.value);
+
+    task.dueDate = editDueDate.value
+        ? new Date(editDueDate.value).toISOString()
+        : null;
 
     saveStorage();
 
@@ -668,11 +773,31 @@ function renderOverdue() {
 
         button.textContent = task.title;
 
+        button.addEventListener("click", () => {
+
+            openOverdueView();
+        
+        });
+
         item.appendChild(button);
 
         overdueContainer.appendChild(item);
 
     });
+
+}
+
+function openOverdueView(){
+
+    appData.currentView = "overdue";
+
+    saveStorage();
+
+    renderLists();
+
+    renderPriority();
+
+    renderTask();
 
 }
 

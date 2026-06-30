@@ -31,5 +31,6 @@ function loadStorage() {
 
     appData.currentList = parsedData.currentList;
     appData.currentPriority = parsedData.currentPriority;
+    appData.currentView = parsedData.currentView || "list";
 
 }

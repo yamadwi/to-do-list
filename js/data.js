@@ -17,6 +17,10 @@ const appData = {
     currentList: null,
 
     // Priority yang sedang dipilih
-    currentPriority: null
+    currentPriority: null,
+
+    currentView: "list",
+
+    currentOverdue: false
 
 };
