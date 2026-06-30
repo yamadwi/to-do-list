@@ -22,6 +22,16 @@ This project was created to practice DOM manipulation, CRUD operations, Local St
 
 ---
 
+## Installation
+
+1. Clone this repository
+
+```bash
+git clone https://github.com/yamadwi/to-do-list.git
+
+---
+
+
 ## Features
 
 ### List Management
@@ -72,36 +82,38 @@ This project was created to practice DOM manipulation, CRUD operations, Local St
 ## Folder Structure
 
 ```
+
 TO-DO-LIST
 │
 ├── assets
-│   ├── images
-│   │   ├── desktop-preview.png
-│   │   └── mobile-preview.png
-│   │
-│   ├── blue-flag.svg
-│   ├── button-calendar.svg
-│   ├── foto-profile.svg
-│   ├── icon-chevron.svg
-│   ├── icon-plus.svg
-│   ├── menu.svg
-│   ├── red-flag.svg
-│   ├── three-dot.svg
-│   ├── white-plus.svg
-│   └── yellow-flag.svg
+│ ├── images
+│ │ ├── desktop-preview.png
+│ │ └── mobile-preview.png
+│ │
+│ ├── blue-flag.svg
+│ ├── button-calendar.svg
+│ ├── foto-profile.svg
+│ ├── icon-chevron.svg
+│ ├── icon-plus.svg
+│ ├── menu.svg
+│ ├── red-flag.svg
+│ ├── three-dot.svg
+│ ├── white-plus.svg
+│ └── yellow-flag.svg
 │
 ├── js
-│   ├── app.js
-│   ├── calendar.js
-│   ├── data.js
-│   ├── list.js
-│   ├── priority.js
-│   ├── storage.js
-│   └── task.js
+│ ├── app.js
+│ ├── calendar.js
+│ ├── data.js
+│ ├── list.js
+│ ├── priority.js
+│ ├── storage.js
+│ └── task.js
 │
 ├── indeks.html
 ├── indeks-style.css
 └── README.md
+
 ```
 
 ---
@@ -157,3 +169,4 @@ Developed by **Yama Dwi Yulianto**
 
 GitHub:
 https://github.com/yamadwi
+```
