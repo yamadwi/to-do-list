@@ -208,6 +208,12 @@ SIDEBAR
 
 }
 
+.section-content.hide {
+
+    display: none;
+
+}
+
 .profile {
 
     display: flex;
