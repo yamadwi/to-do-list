@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 const sidebarAccordions = document.querySelectorAll(".sidebar-section");
 
+const menuToggle = document.getElementById("menuToggle");
+
+const sidebar = document.querySelector(".sidebar");
+
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
 function initApp() {
     
     loadStorage();
@@ -21,6 +27,8 @@ function initApp() {
     initTask();
 
     initSidebarAccordion();
+
+    initMobileSidebar();
 
     renderLists();
 
@@ -83,5 +91,31 @@ function initSidebarAccordion() {
         });
 
     });
+
+}
+
+function initMobileSidebar() {
+
+    menuToggle.addEventListener("click", () => {
+
+        sidebar.classList.add("show");
+
+        sidebarOverlay.classList.add("show");
+
+        menuToggle.classList.add("hide");
+
+    });
+
+    sidebarOverlay.addEventListener("click", closeSidebar);
+
+}
+
+function closeSidebar() {
+
+    sidebar.classList.remove("show");
+
+    sidebarOverlay.classList.remove("show");
+
+    menuToggle.classList.remove("hide");
 
 }

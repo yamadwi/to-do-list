@@ -875,6 +875,8 @@ function openOverdueView(){
 
     renderTask();
 
+    closeSidebar();
+
 }
 
 function isOverdue(task) {

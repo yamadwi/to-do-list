@@ -186,6 +186,8 @@ function selectList(id) {
 
     renderTask();
 
+    closeSidebar();
+
 }
 
 function editList() {

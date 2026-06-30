@@ -146,6 +146,8 @@ function selectPriority(id){
 
     renderTask();
 
+    closeSidebar();
+
 }
 
 function editPriority() {

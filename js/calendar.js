@@ -62,11 +62,28 @@ function openCalendar(event){
 
     calendarPopup.classList.add("show");
 
-    calendarPopup.style.left =
-    event.pageX - 260 + "px";
+    if(window.innerWidth <= 768){
 
-    calendarPopup.style.top =
-    event.pageY + 40 + "px";
+        calendarPopup.style.left = "50%";
+
+        calendarPopup.style.top = "50%";
+
+        calendarPopup.style.transform =
+            "translate(-50%, -50%)";
+
+    }
+
+    else{
+
+        calendarPopup.style.transform = "";
+
+        calendarPopup.style.left =
+            event.pageX - 260 + "px";
+
+        calendarPopup.style.top =
+            event.pageY + 40 + "px";
+
+    }
 
     renderCalendar();
 
