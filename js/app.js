@@ -26,6 +26,8 @@ function initApp() {
 
     renderTask();
 
+    renderOverdue();
+
 }
 
 // =========================

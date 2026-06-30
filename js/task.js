@@ -44,6 +44,8 @@ const cancelDeleteAll = document.getElementById("cancelDeleteAll");
 
 const confirmDeleteAllBtn = document.getElementById("confirmDeleteAll");
 
+const overdueContainer = document.getElementById("overdueContainer");
+
 let selectedTaskId = null;
 
 
@@ -155,6 +157,8 @@ function saveTask() {
     saveStorage();
 
     renderTask();
+
+    renderOverdue();
 
     taskInput.value = "";
 
@@ -494,6 +498,8 @@ function deleteAllTasks() {
 
     renderTask();
 
+    renderOverdue();
+
     closeDeleteAllModal();
 
 }
@@ -507,6 +513,8 @@ function confirmDeleteTask() {
     saveStorage();
 
     renderTask();
+
+    renderOverdue();
 
     closeDeleteTaskModal();
 
@@ -580,6 +588,8 @@ function updateTask() {
 
     renderTask();
 
+    renderOverdue();
+
     closeEditTaskModal();
 
 }
@@ -597,6 +607,8 @@ function completeTask(id) {
     saveStorage();
 
     renderTask();
+
+    renderOverdue();
 
 }
 
@@ -631,6 +643,34 @@ function renderPrioritySelect() {
         option.textContent = priority.name;
 
         prioritySelect.appendChild(option);
+
+    });
+
+}
+
+function renderOverdue() {
+
+    overdueContainer.innerHTML = "";
+
+    const overdueTasks = appData.tasks.filter(task =>
+        isOverdue(task)
+    );
+
+    overdueTasks.forEach(task => {
+
+        const item = document.createElement("div");
+
+        item.classList.add("list-item");
+
+        const button = document.createElement("button");
+
+        button.classList.add("list-name");
+
+        button.textContent = task.title;
+
+        item.appendChild(button);
+
+        overdueContainer.appendChild(item);
 
     });
 
