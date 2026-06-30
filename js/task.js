@@ -10,6 +10,12 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 
 const todoContainer = document.getElementById("todoContainer");
 
+const emptyState = document.getElementById("emptyState");
+
+const emptyTitle = document.getElementById("emptyTitle");
+
+const emptyDescription = document.getElementById("emptyDescription");
+
 const completedContainer = document.getElementById("completedContainer");
 
 const deleteAllBtn = document.getElementById("deleteAllBtn");
@@ -241,6 +247,62 @@ function renderTask() {
     
         );
     
+    }
+
+    // =========================
+    // Empty State
+    // =========================
+
+    if (tasks.length === 0) {
+
+        emptyState.classList.add("show");
+
+        if (appData.currentView === "list") {
+
+            if (!appData.currentList) {
+
+                emptyTitle.textContent = "Choose a List";
+
+                emptyDescription.textContent =
+                    "Select a list from the sidebar.";
+
+            }
+
+            else {
+
+                emptyTitle.textContent = "No tasks yet";
+
+                emptyDescription.textContent =
+                    "Create your first task.";
+
+            }
+
+        }
+
+        else if (appData.currentView === "priority") {
+
+            emptyTitle.textContent = "No priority tasks";
+
+            emptyDescription.textContent =
+                "There are no tasks with this priority.";
+
+        }
+
+        else if (appData.currentView === "overdue") {
+
+            emptyTitle.textContent = "No overdue tasks";
+
+            emptyDescription.textContent =
+                "You're all caught up! 🎉";
+
+        }
+
+    }
+
+    else {
+
+        emptyState.classList.remove("show");
+
     }
 
     tasks.forEach(task => {

@@ -1228,3 +1228,45 @@ SIDEBAR
     background: var(--hover);
 
 }
+
+/* =========================
+   Empty State
+========================= */
+
+.empty-state {
+
+    display: none;
+
+    text-align: center;
+
+    margin-top: 80px;
+
+    color: var(--text-secondary);
+
+}
+
+.empty-state.show {
+
+    display: block;
+
+}
+
+.empty-state h3 {
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    color: var(--text);
+
+}
+
+.empty-state p {
+
+    margin-top: 10px;
+
+    font-size: 14px;
+
+    color: var(--text-secondary);
+
+}
