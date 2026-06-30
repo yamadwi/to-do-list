@@ -174,7 +174,3 @@ No backend or database is required.
 Developed by **Yama Dwi Yulianto**
 
 - GitHub: https://github.com/yamadwi
-
----
-
-# 📄 License
