@@ -1,18 +1,24 @@
 # To-Do List App
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Responsive](https://img.shields.io/badge/Responsive-Yes-success?style=for-the-badge)
+![LocalStorage](https://img.shields.io/badge/LocalStorage-Used-blue?style=for-the-badge)
+
 A modern and responsive To-Do List application built using **HTML**, **CSS**, and **Vanilla JavaScript**.
 
 This project was created to practice DOM manipulation, CRUD operations, Local Storage, responsive layouts, and clean UI design without using any framework.
 
 ---
 
-## Preview
+## Desktop Preview
 
-> Add a screenshot or GIF here.
+![Desktop Preview](assets/images/desktop-preview.png)
 
-Example:
+## Mobile Preview
 
-![Preview](assets/preview.png)
+![Mobile Preview](assets/images/mobile-preview.png)
 
 ---
 
@@ -66,9 +72,23 @@ Example:
 ## Folder Structure
 
 ```
-To-Do-List
+TO-DO-LIST
 │
 ├── assets
+│   ├── images
+│   │   ├── desktop-preview.png
+│   │   └── mobile-preview.png
+│   │
+│   ├── blue-flag.svg
+│   ├── button-calendar.svg
+│   ├── foto-profile.svg
+│   ├── icon-chevron.svg
+│   ├── icon-plus.svg
+│   ├── menu.svg
+│   ├── red-flag.svg
+│   ├── three-dot.svg
+│   ├── white-plus.svg
+│   └── yellow-flag.svg
 │
 ├── js
 │   ├── app.js
