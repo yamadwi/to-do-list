@@ -693,7 +693,7 @@ function openEditTaskModal() {
 
     renderEditPrioritySelect();
 
-    editPrioritySelect.value = task.priorityId;
+    editPrioritySelect.value = task.priorityId ?? "";
 
     editDueDate.value = task.dueDate
         ? task.dueDate.split("T")[0]
@@ -720,6 +720,14 @@ function closeEditTaskModal() {
 function renderEditPrioritySelect() {
 
     editPrioritySelect.innerHTML = "";
+
+    const defaultOption = document.createElement("option");
+
+    defaultOption.value = "";
+
+    defaultOption.textContent = "No Priority";
+
+    editPrioritySelect.appendChild(defaultOption);
 
     appData.priorities.forEach(priority => {
 
@@ -749,7 +757,9 @@ function updateTask() {
 
     task.title = title;
 
-    task.priorityId = Number(editPrioritySelect.value);
+    task.priorityId = editPrioritySelect.value
+    ? Number(editPrioritySelect.value)
+    : null;
 
     task.dueDate = editDueDate.value
         ? new Date(editDueDate.value).toISOString()
