@@ -133,7 +133,9 @@ function saveTask() {
 
     const title = taskInput.value.trim();
 
-    const priorityId = Number(prioritySelect.value);
+    const priorityId = prioritySelect.value
+        ? Number(prioritySelect.value)
+        : null;
 
     if (!title) return;
 
@@ -145,9 +147,11 @@ function saveTask() {
 
     }
 
-    if (!priorityId) {
+    if (!title) return;
 
-        alert("Choose a priority.");
+    if (!appData.currentList) {
+
+        alert("Choose a list first.");
 
         return;
 
@@ -389,30 +393,32 @@ function renderTask() {
 
         // Flag
 
-        const flag = document.createElement("img");
-
-        flag.classList.add("task-flag");
-
         if (priority) {
 
+            const flag = document.createElement("img");
+        
+            flag.classList.add("task-flag");
+        
             if (priority.color === "#EF4444") {
-
+        
                 flag.src = "assets/red-flag.svg";
-
+        
             }
-
+        
             else if (priority.color === "#F59B0B") {
-
+        
                 flag.src = "assets/yellow-flag.svg";
-
+        
             }
-
+        
             else {
-
+        
                 flag.src = "assets/blue-flag.svg";
-
+        
             }
-
+        
+            right.appendChild(flag);
+        
         }
 
         // Menu
@@ -432,8 +438,6 @@ function renderTask() {
             openTaskMenu(event, task.id);
         
         });
-
-        right.appendChild(flag);
         
         right.appendChild(menu);
 
@@ -797,7 +801,7 @@ function renderPrioritySelect() {
 
     defaultOption.value = "";
 
-    defaultOption.textContent = "Choose Priority";
+    defaultOption.textContent = "No Priority";
 
     prioritySelect.appendChild(defaultOption);
 
